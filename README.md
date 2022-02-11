@@ -3,3 +3,9 @@
 ## 1 year old
 
 记录开始！
+
+## 技术支持
+
+- react
+- next.js
+- vercel
