@@ -24,9 +24,9 @@ export default function GrowthDevelopment({ gender }: Props) {
     <>
       <Typography variant="h3">{isBoy ? '男孩' : '女孩'}（7岁以下）</Typography>
       <Typography variant="h4">身高（长）标准值（cm）</Typography>
-      <Image src={isBoy ? BoyWeightPic : GirlWeightPic} alt="boy height" />
-      <Typography variant="h4">体重标准值（kg）</Typography>
       <Image src={isBoy ? BoyHeightPic : GirlHeightPic} alt="boy height" />
+      <Typography variant="h4">体重标准值（kg）</Typography>
+      <Image src={isBoy ? BoyWeightPic : GirlWeightPic} alt="boy height" />
       <Typography variant="h4">头围标准值（cm）</Typography>
       <Image src={isBoy ? BoyHeadPic : GirlHeadPic} alt="boy height" />
     </>
