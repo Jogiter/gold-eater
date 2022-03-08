@@ -12,7 +12,7 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 
-const pages = ['Products', 'Pricing', 'Blog']
+const pages = ['Products', 'Pricing', 'Blog', 'Login']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 const logo = 'Gold Eater'
 
@@ -44,12 +44,12 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component="a"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            href="/"
           >
             {logo}
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -98,14 +98,14 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                // onClick={handleCloseNavMenu}
+                href={'/' + page.toLowerCase()}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
