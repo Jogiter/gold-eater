@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import Appbar from './AppBar'
 import Footer from './Footer'
+import { AppBarConfig } from '~/config'
 
 export type Props = {
   children?: ReactNode
@@ -10,13 +11,9 @@ export type Props = {
 export default function Layout({ children, footer = true }: Props) {
   return (
     <div>
-      <Appbar></Appbar>
-      <div className='text-center p-4'>
-        {children}
-      </div>
-      {
-        footer ? <Footer></Footer> : ''
-      }
+      <Appbar {...AppBarConfig}></Appbar>
+      <div className="text-center p-4">{children}</div>
+      {footer ? <Footer></Footer> : ''}
     </div>
   )
 }

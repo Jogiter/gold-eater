@@ -12,11 +12,21 @@ import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import MenuItem from '@mui/material/MenuItem'
 
-const pages = ['Products', 'Pricing', 'Blog', 'Login']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
-const logo = 'Gold Eater'
+export interface Props {
+  pages: string[]
+  settings: string[]
+  logo: string
+  avatar: string
+  userTooltip?: string
+}
 
-const ResponsiveAppBar = () => {
+export default function ResponsiveAppBar({
+  pages,
+  settings,
+  logo,
+  avatar,
+  userTooltip = '',
+}: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -36,6 +46,8 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
+
+  const getRoute = (page: string) => `/${page.toLowerCase()}`
 
   return (
     <AppBar position="static">
@@ -81,7 +93,13 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography
+                    textAlign="center"
+                    component="a"
+                    href={getRoute(page)}
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -89,7 +107,8 @@ const ResponsiveAppBar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="div"
+            component="a"
+            href="/"
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             {logo}
@@ -98,8 +117,7 @@ const ResponsiveAppBar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                // onClick={handleCloseNavMenu}
-                href={'/' + page.toLowerCase()}
+                href={getRoute(page)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -107,9 +125,9 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={userTooltip}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={logo} src="/static/images/avatar/2.jpg" />
+                <Avatar alt={logo} src={avatar} />
               </IconButton>
             </Tooltip>
             <Menu
@@ -130,7 +148,13 @@ const ResponsiveAppBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography
+                    textAlign="center"
+                    component="a"
+                    href={getRoute(setting)}
+                  >
+                    {setting}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -140,4 +164,3 @@ const ResponsiveAppBar = () => {
     </AppBar>
   )
 }
-export default ResponsiveAppBar
